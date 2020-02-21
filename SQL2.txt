@@ -1,0 +1,180 @@
+create table paytable(
+	designation_id serial primary key, 
+	designation varchar(100) unique not NULL, 
+	charges_hour INTEGER NOT null
+);
+
+create table departmenttable(
+	department_id serial primary key, 
+	department_name varchar(100) unique not NULL,
+	roomadress varchar(5) unique not NULL
+	
+);
+
+create table doctortable(
+	doctor_id serial primary key not NULL,
+	doctor_name VARCHAR(255) not NULL,
+	department_id INTEGER not NULL references departmenttable(department_id), 
+	designation_id INTEGER not NULL references paytable(designation_id),
+	phone INTEGER unique not NULL
+);
+
+
+
+
+
+create table roomtypetable(
+	roomtype_id serial primary key, 
+	roomtype varchar(100) unique not NULL
+);
+
+
+create table roomtable(
+	room_id serial primary key, 
+	roomtype_id INTEGER not NULL references roomtypetable(roomtype_id)
+
+);
+
+create table bedtable(
+	bed_id serial primary key, 
+	room_id INTEGER references roomtable(room_id)
+);
+
+
+create table patienttable(
+	patient_id serial primary key, 
+	patient_name varchar(255) not NULL, 
+	cpr varchar(11) unique not NULL, 
+	patient_phone integer unique not NULL
+);
+
+create table treatmenttable( 
+	treatment_id serial primary key, 
+	patient_id integer references patienttable(patient_id),
+	room_id integer references roomtable(room_id),
+	bed_id integer references bedtable(bed_id),
+	doctor_id integer references doctortable(doctor_id)
+);
+
+
+
+insert into paytable(designation, charges_hour)
+VALUES('professor', 5000);
+insert into paytable(designation, charges_hour)
+VALUES('Assistant professor', 3000);
+
+
+
+
+insert into departmenttable(department_name, roomadress)
+VALUES('neurology','U45');
+insert into departmenttable(department_name, roomadress)
+VALUES('orthopedic','U32');
+insert into departmenttable(department_name, roomadress)
+VALUES('ENT/neurology','U186');
+insert into departmenttable(department_name, roomadress)
+VALUES('skin/orthopedic','U150');
+
+
+insert into doctortable(doctor_name, department_id, designation_id, phone)
+VALUES('Dr. Petersen', 1, 1, 12341234);
+insert into doctortable(doctor_name, department_id, designation_id, phone)
+VALUES('Dr. Jensen', 2, 1, 24352435);
+insert into doctortable(doctor_name, department_id, designation_id, phone)
+VALUES('Dr. Poetch', 3, 2, 34563456);
+insert into doctortable(doctor_name, department_id, designation_id, phone)
+VALUES('Dr. Neurenheim', 4, 2, 45674567);
+
+insert into roomtypetable(roomtype)
+VALUES('normal');
+insert into roomtypetable(roomtype)
+VALUES('two-bed');
+insert into roomtypetable(roomtype)
+VALUES('special');
+
+insert into roomtable(roomnumber,roomtype_id)
+values('R2', 1);
+insert into roomtable(roomnumber,roomtype_id)
+values('R4',2);
+insert into roomtable(roomnumber,roomtype_id)
+values('R5',3);
+insert into roomtable(roomnumber,roomtype_id)
+values('R6',3);
+
+
+insert into bedtable(room_id, bednumber)
+values(1,'B1');
+insert into bedtable(room_id, bednumber)
+values(2,'B5');
+insert into bedtable(room_id, bednumber)
+values(2,'B7');
+insert into bedtable(room_id, bednumber)
+values(3,'B8');
+insert into bedtable(room_id, bednumber)
+values(4,'B9');
+
+insert into patienttable(patient_name, cpr, patient_phone)
+values('Jan','190582-1113',98769876);
+insert into patienttable(patient_name, cpr, patient_phone)
+values('Peter','300175-2359',87658765);
+insert into patienttable(patient_name, cpr, patient_phone)
+values('Jens','041298-1257',76547654);
+insert into patienttable(patient_name, cpr, patient_phone)
+values('Ole','051165-9863',65436543);
+insert into patienttable(patient_name, cpr, patient_phone)
+values('Anna','260292-1050',54325432);
+insert into patienttable(patient_name, cpr, patient_phone)
+values('Dennis','150893-1151',43214321);
+insert into patienttable(patient_name, cpr, patient_phone)
+values('Ahmed','010211-7853',32103210);
+insert into patienttable(patient_name, cpr, patient_phone)
+values('Annika','051285-8072',21092109);
+
+insert into treatmenttable(patient_id, room_id, bed_id, doctor_id)
+values(1,1,1,1);
+insert into treatmenttable(patient_id, room_id, bed_id, doctor_id)
+values(2,1,1,1);
+insert into treatmenttable(patient_id, doctor_id)
+values(3,1);
+insert into treatmenttable(patient_id, room_id, bed_id, doctor_id)
+values(4,1,1,2);
+insert into treatmenttable(patient_id, room_id, bed_id, doctor_id)
+values(3,2,2,2);
+insert into treatmenttable(patient_id, room_id, bed_id, doctor_id)
+values(5,2,3,2);
+insert into treatmenttable(patient_id, doctor_id)
+values(6,3);
+insert into treatmenttable(patient_id, room_id, bed_id, doctor_id)
+values(1,3,4,3);
+insert into treatmenttable(patient_id, doctor_id)
+values(7,4);
+insert into treatmenttable(patient_id, room_id, bed_id, doctor_id)
+values(8,4,5,4);
+
+
+select * from departmenttable;
+
+select * from doctortable;
+select * from paytable;
+
+alter table doctortable alter column department_id TYPE integer references departmenttable(department_id);
+alter table roomtable add column roomnumber varchar(10);
+alter table bedtable add column bednumber varchar(10);
+
+
+
+drop table treatmenttable;
+drop table patienttable;
+drop table doctortable;
+
+create view newview as 
+select patient_name, cpr, roomnumber, bednumber, doctortable.doctor_name from doctortable
+	INNER JOIN treatmenttable on treatmenttable.doctor_id = doctortable.doctor_id
+	INNER JOIN roomtable on treatmenttable.room_id = roomtable.room_id
+	INNER JOIN bedtable on treatmenttable.bed_id = bedtable.bed_id
+	INNER JOIN patienttable on treatmenttable.patient_id = patienttable.patient_id;
+
+
+
+select * from newview where doctor_name = 'Dr. Petersen';
+select * from newview;
