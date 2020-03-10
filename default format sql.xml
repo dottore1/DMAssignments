@@ -1,4 +1,172 @@
-<code_scheme name="default" version="173">
+<code_scheme name="default-sql" version="173">
+  <DB2CodeStyleSettings version="2">
+    <option name="ALIAS_CASE" value="1" />
+    <option name="KEYWORD_CASE" value="0" />
+    <option name="TYPE_CASE" value="0" />
+    <option name="IDENTIFIER_CASE" value="1" />
+    <option name="QUOTED_IDENTIFIER_CASE" value="1" />
+    <option name="QUERY_SECTION_1ST_WORD_ALIGN" value="2" />
+    <option name="INSERT_INTO_NL" value="2" />
+    <option name="INSERT_CONTENT" value="0" />
+    <option name="INSERT_TABLE_EL_LINE" value="0" />
+    <option name="INSERT_VALUES_EL_LINE" value="101" />
+    <option name="SET_EL_LINE" value="101" />
+    <option name="WITH_EL_LINE" value="1" />
+    <option name="SELECT_EL_LINE" value="1" />
+    <option name="FROM_EL_LINE" value="1" />
+    <option name="FROM_ALIGN_JOIN_TABLES" value="true" />
+    <option name="WHERE_EL_LINE" value="1" />
+    <option name="ORDER_EL_LINE" value="1" />
+    <option name="ORDER_EL_WRAP" value="2" />
+    <option name="IMP_DECLARE_ALIGN_DEFAULT" value="true" />
+    <option name="IMP_IF_THEN_WRAP_THEN" value="true" />
+    <option name="IMP_IF_THEN_INDENT_THEN_ELSE" value="true" />
+    <option name="EXPR_CASE_THEN_WRAP" value="true" />
+    <option name="EXPR_CASE_THEN_ALIGN" value="true" />
+  </DB2CodeStyleSettings>
+  <DerbyCodeStyleSettings version="2">
+    <option name="ALIAS_CASE" value="1" />
+    <option name="KEYWORD_CASE" value="0" />
+    <option name="TYPE_CASE" value="0" />
+    <option name="IDENTIFIER_CASE" value="1" />
+    <option name="QUOTED_IDENTIFIER_CASE" value="1" />
+    <option name="QUERY_SECTION_1ST_WORD_ALIGN" value="2" />
+    <option name="INSERT_INTO_NL" value="2" />
+    <option name="INSERT_CONTENT" value="0" />
+    <option name="INSERT_TABLE_EL_LINE" value="0" />
+    <option name="INSERT_VALUES_EL_LINE" value="101" />
+    <option name="SET_EL_LINE" value="101" />
+    <option name="WITH_EL_LINE" value="1" />
+    <option name="SELECT_EL_LINE" value="1" />
+    <option name="FROM_EL_LINE" value="1" />
+    <option name="FROM_ALIGN_JOIN_TABLES" value="true" />
+    <option name="WHERE_EL_LINE" value="1" />
+    <option name="ORDER_EL_LINE" value="1" />
+    <option name="ORDER_EL_WRAP" value="2" />
+    <option name="IMP_DECLARE_ALIGN_DEFAULT" value="true" />
+    <option name="IMP_IF_THEN_WRAP_THEN" value="true" />
+    <option name="IMP_IF_THEN_INDENT_THEN_ELSE" value="true" />
+    <option name="EXPR_CASE_THEN_WRAP" value="true" />
+    <option name="EXPR_CASE_THEN_ALIGN" value="true" />
+  </DerbyCodeStyleSettings>
+  <H2CodeStyleSettings version="2">
+    <option name="ALIAS_CASE" value="1" />
+    <option name="KEYWORD_CASE" value="0" />
+    <option name="TYPE_CASE" value="0" />
+    <option name="IDENTIFIER_CASE" value="1" />
+    <option name="QUOTED_IDENTIFIER_CASE" value="1" />
+    <option name="QUERY_SECTION_1ST_WORD_ALIGN" value="2" />
+    <option name="INSERT_INTO_NL" value="2" />
+    <option name="INSERT_CONTENT" value="0" />
+    <option name="INSERT_TABLE_EL_LINE" value="0" />
+    <option name="INSERT_VALUES_EL_LINE" value="101" />
+    <option name="SET_EL_LINE" value="101" />
+    <option name="WITH_EL_LINE" value="1" />
+    <option name="SELECT_EL_LINE" value="1" />
+    <option name="FROM_EL_LINE" value="1" />
+    <option name="FROM_ALIGN_JOIN_TABLES" value="true" />
+    <option name="WHERE_EL_LINE" value="1" />
+    <option name="ORDER_EL_LINE" value="1" />
+    <option name="ORDER_EL_WRAP" value="2" />
+    <option name="EXPR_CASE_THEN_WRAP" value="true" />
+    <option name="EXPR_CASE_THEN_ALIGN" value="true" />
+  </H2CodeStyleSettings>
+  <HSQLCodeStyleSettings version="2">
+    <option name="ALIAS_CASE" value="1" />
+    <option name="KEYWORD_CASE" value="0" />
+    <option name="TYPE_CASE" value="0" />
+    <option name="IDENTIFIER_CASE" value="1" />
+    <option name="QUOTED_IDENTIFIER_CASE" value="1" />
+    <option name="QUERY_SECTION_1ST_WORD_ALIGN" value="2" />
+    <option name="INSERT_INTO_NL" value="2" />
+    <option name="INSERT_CONTENT" value="0" />
+    <option name="INSERT_TABLE_EL_LINE" value="0" />
+    <option name="INSERT_VALUES_EL_LINE" value="101" />
+    <option name="SET_EL_LINE" value="101" />
+    <option name="WITH_EL_LINE" value="1" />
+    <option name="SELECT_EL_LINE" value="1" />
+    <option name="FROM_EL_LINE" value="1" />
+    <option name="FROM_ALIGN_JOIN_TABLES" value="true" />
+    <option name="WHERE_EL_LINE" value="1" />
+    <option name="ORDER_EL_LINE" value="1" />
+    <option name="ORDER_EL_WRAP" value="2" />
+    <option name="EXPR_CASE_THEN_WRAP" value="true" />
+    <option name="EXPR_CASE_THEN_ALIGN" value="true" />
+  </HSQLCodeStyleSettings>
+  <MSSQLCodeStyleSettings version="2">
+    <option name="ALIAS_CASE" value="1" />
+    <option name="KEYWORD_CASE" value="0" />
+    <option name="TYPE_CASE" value="0" />
+    <option name="IDENTIFIER_CASE" value="1" />
+    <option name="QUOTED_IDENTIFIER_CASE" value="1" />
+    <option name="QUERY_SECTION_1ST_WORD_ALIGN" value="2" />
+    <option name="INSERT_INTO_NL" value="2" />
+    <option name="INSERT_CONTENT" value="0" />
+    <option name="INSERT_TABLE_EL_LINE" value="0" />
+    <option name="INSERT_VALUES_EL_LINE" value="101" />
+    <option name="SET_EL_LINE" value="101" />
+    <option name="WITH_EL_LINE" value="1" />
+    <option name="SELECT_EL_LINE" value="1" />
+    <option name="FROM_EL_LINE" value="1" />
+    <option name="FROM_ALIGN_JOIN_TABLES" value="true" />
+    <option name="WHERE_EL_LINE" value="1" />
+    <option name="ORDER_EL_LINE" value="1" />
+    <option name="ORDER_EL_WRAP" value="2" />
+    <option name="IMP_DECLARE_ALIGN_DEFAULT" value="true" />
+    <option name="IMP_IF_THEN_WRAP_THEN" value="true" />
+    <option name="IMP_IF_THEN_INDENT_THEN_ELSE" value="true" />
+    <option name="EXPR_CASE_THEN_WRAP" value="true" />
+    <option name="EXPR_CASE_THEN_ALIGN" value="true" />
+  </MSSQLCodeStyleSettings>
+  <MySQLCodeStyleSettings version="2">
+    <option name="ALIAS_CASE" value="1" />
+    <option name="KEYWORD_CASE" value="0" />
+    <option name="TYPE_CASE" value="0" />
+    <option name="IDENTIFIER_CASE" value="1" />
+    <option name="QUOTED_IDENTIFIER_CASE" value="1" />
+    <option name="QUERY_SECTION_1ST_WORD_ALIGN" value="2" />
+    <option name="INSERT_INTO_NL" value="2" />
+    <option name="INSERT_CONTENT" value="0" />
+    <option name="INSERT_TABLE_EL_LINE" value="0" />
+    <option name="INSERT_VALUES_EL_LINE" value="101" />
+    <option name="SET_EL_LINE" value="101" />
+    <option name="WITH_EL_LINE" value="1" />
+    <option name="SELECT_EL_LINE" value="1" />
+    <option name="FROM_EL_LINE" value="1" />
+    <option name="FROM_ALIGN_JOIN_TABLES" value="true" />
+    <option name="WHERE_EL_LINE" value="1" />
+    <option name="ORDER_EL_LINE" value="1" />
+    <option name="ORDER_EL_WRAP" value="2" />
+    <option name="IMP_IF_THEN_WRAP_THEN" value="true" />
+    <option name="IMP_IF_THEN_INDENT_THEN_ELSE" value="true" />
+    <option name="EXPR_CASE_THEN_WRAP" value="true" />
+    <option name="EXPR_CASE_THEN_ALIGN" value="true" />
+  </MySQLCodeStyleSettings>
+  <OracleCodeStyleSettings version="2">
+    <option name="ALIAS_CASE" value="1" />
+    <option name="KEYWORD_CASE" value="0" />
+    <option name="TYPE_CASE" value="0" />
+    <option name="IDENTIFIER_CASE" value="1" />
+    <option name="QUOTED_IDENTIFIER_CASE" value="1" />
+    <option name="QUERY_SECTION_1ST_WORD_ALIGN" value="2" />
+    <option name="INSERT_INTO_NL" value="2" />
+    <option name="INSERT_CONTENT" value="0" />
+    <option name="INSERT_TABLE_EL_LINE" value="0" />
+    <option name="INSERT_VALUES_EL_LINE" value="101" />
+    <option name="SET_EL_LINE" value="101" />
+    <option name="WITH_EL_LINE" value="1" />
+    <option name="SELECT_EL_LINE" value="1" />
+    <option name="FROM_EL_LINE" value="1" />
+    <option name="FROM_ALIGN_JOIN_TABLES" value="true" />
+    <option name="WHERE_EL_LINE" value="1" />
+    <option name="ORDER_EL_LINE" value="1" />
+    <option name="ORDER_EL_WRAP" value="2" />
+    <option name="IMP_DECLARE_ALIGN_DEFAULT" value="true" />
+    <option name="IMP_IF_THEN_WRAP_THEN" value="true" />
+    <option name="IMP_IF_THEN_INDENT_THEN_ELSE" value="true" />
+    <option name="EXPR_CASE_THEN_WRAP" value="true" />
+    <option name="EXPR_CASE_THEN_ALIGN" value="true" />
+  </OracleCodeStyleSettings>
   <PostgresCodeStyleSettings version="2">
     <option name="KEYWORD_CASE" value="0" />
     <option name="IDENTIFIER_CASE" value="1" />
@@ -24,7 +192,57 @@
     <option name="EXPR_CASE_THEN_ALIGN" value="true" />
     <option name="EXPR_CASE_COLLAPSE" value="false" />
   </PostgresCodeStyleSettings>
+  <SQLiteCodeStyleSettings version="2">
+    <option name="ALIAS_CASE" value="1" />
+    <option name="KEYWORD_CASE" value="0" />
+    <option name="TYPE_CASE" value="0" />
+    <option name="IDENTIFIER_CASE" value="1" />
+    <option name="QUOTED_IDENTIFIER_CASE" value="1" />
+    <option name="QUERY_SECTION_1ST_WORD_ALIGN" value="2" />
+    <option name="INSERT_INTO_NL" value="2" />
+    <option name="INSERT_CONTENT" value="0" />
+    <option name="INSERT_TABLE_EL_LINE" value="0" />
+    <option name="INSERT_VALUES_EL_LINE" value="101" />
+    <option name="SET_EL_LINE" value="101" />
+    <option name="WITH_EL_LINE" value="1" />
+    <option name="SELECT_EL_LINE" value="1" />
+    <option name="FROM_EL_LINE" value="1" />
+    <option name="FROM_ALIGN_JOIN_TABLES" value="true" />
+    <option name="WHERE_EL_LINE" value="1" />
+    <option name="ORDER_EL_LINE" value="1" />
+    <option name="ORDER_EL_WRAP" value="2" />
+    <option name="EXPR_CASE_THEN_WRAP" value="true" />
+    <option name="EXPR_CASE_THEN_ALIGN" value="true" />
+  </SQLiteCodeStyleSettings>
   <SqlCodeStyleSettings version="2">
+    <option name="ALIAS_CASE" value="1" />
+    <option name="KEYWORD_CASE" value="0" />
+    <option name="TYPE_CASE" value="0" />
+    <option name="IDENTIFIER_CASE" value="1" />
+    <option name="QUOTED_IDENTIFIER_CASE" value="1" />
+    <option name="QUERY_SECTION_1ST_WORD_ALIGN" value="8" />
+    <option name="INSERT_INTO_NL" value="2" />
+    <option name="INSERT_CONTENT" value="0" />
+    <option name="INSERT_TABLE_EL_LINE" value="1" />
+    <option name="INSERT_VALUES_EL_LINE" value="101" />
+    <option name="SET_EL_LINE" value="101" />
+    <option name="WITH_EL_LINE" value="1" />
+    <option name="SELECT_EL_LINE" value="1" />
+    <option name="SELECT_EL_WRAP" value="2" />
+    <option name="SELECT_KEEP_N_ITEMS_IN_LINE" value="0" />
+    <option name="FROM_EL_LINE" value="1" />
+    <option name="FROM_EL_WRAP" value="2" />
+    <option name="FROM_ALIGN_JOIN_TABLES" value="true" />
+    <option name="WHERE_EL_LINE" value="1" />
+    <option name="ORDER_EL_LINE" value="1" />
+    <option name="ORDER_EL_WRAP" value="2" />
+    <option name="IMP_DECLARE_ALIGN_DEFAULT" value="true" />
+    <option name="IMP_IF_THEN_WRAP_THEN" value="true" />
+    <option name="IMP_IF_THEN_INDENT_THEN_ELSE" value="true" />
+    <option name="EXPR_CASE_THEN_WRAP" value="true" />
+    <option name="EXPR_CASE_THEN_ALIGN" value="true" />
+  </SqlCodeStyleSettings>
+  <SybaseCodeStyleSettings version="2">
     <option name="ALIAS_CASE" value="1" />
     <option name="KEYWORD_CASE" value="0" />
     <option name="TYPE_CASE" value="0" />
@@ -48,7 +266,7 @@
     <option name="IMP_IF_THEN_INDENT_THEN_ELSE" value="true" />
     <option name="EXPR_CASE_THEN_WRAP" value="true" />
     <option name="EXPR_CASE_THEN_ALIGN" value="true" />
-  </SqlCodeStyleSettings>
+  </SybaseCodeStyleSettings>
   <codeStyleSettings language="PostgreSQL">
     <option name="KEEP_LINE_BREAKS" value="false" />
     <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />

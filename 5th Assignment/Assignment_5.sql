@@ -125,44 +125,23 @@ BEGIN;
 INSERT
     INTO employee(username, password, email)
     VALUES
-        ('sikri', 'AnotherPassword', 'sikri@gmail.com');
-INSERT
-    INTO employee(username, password, email)
-    VALUES
-        ('teyson', 'AnotherPassword', 'teyson@gmail.com');
-INSERT
-    INTO employee(username, password, email)
-    VALUES
-        ('Nicky', 'AnotherPassword', 'Nicky@gmail.com');
-INSERT
-    INTO employee(username, password, email)
-    VALUES
+        ('sikri', 'AnotherPassword', 'sikri@gmail.com'),
+        ('teyson', 'AnotherPassword', 'teyson@gmail.com'),
+        ('Nicky', 'AnotherPassword', 'Nicky@gmail.com'),
         ('Sapra', 'AnotherPassword', 'Sapra@gmail.com');
 
 INSERT
     INTO department(name)
     VALUES
-        ('Sales');
-INSERT
-    INTO department(name)
-    VALUES
+        ('Sales'),
         ('SoMo');
 
 INSERT
     INTO department_members(employee_id, department_id)
     VALUES
-        (9, 5);
-INSERT
-    INTO department_members(employee_id, department_id)
-    VALUES
-        (10, 5);
-INSERT
-    INTO department_members(employee_id, department_id)
-    VALUES
-        (11, 5);
-INSERT
-    INTO department_members(employee_id, department_id)
-    VALUES
+        (9, 5),
+        (10, 5),
+        (11, 5),
         (12, 5);
 
 BEGIN;
