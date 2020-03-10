@@ -2,25 +2,25 @@ BEGIN;
 
 CREATE TABLE employee
 (
-    id                   serial PRIMARY KEY,
-    username             varchar(255) NOT NULL UNIQUE,
-    password             varchar(255) NOT NULL,
-    email                varchar(255) NOT NULL UNIQUE,
-    number_of_colleagues integer
+    id                   SERIAL PRIMARY KEY,
+    username             VARCHAR(255) NOT NULL UNIQUE,
+    password             VARCHAR(255) NOT NULL,
+    email                VARCHAR(255) NOT NULL UNIQUE,
+    number_of_colleagues INTEGER
 );
 
 CREATE TABLE department
 (
-    id                  serial PRIMARY KEY,
-    name                varchar(50) NOT NULL UNIQUE,
-    number_of_employees integer
+    id                  SERIAL PRIMARY KEY,
+    name                VARCHAR(50) NOT NULL UNIQUE,
+    number_of_employees INTEGER
 
 );
 
 CREATE TABLE department_members
 (
-    employee_id   integer REFERENCES employee (id),
-    department_id integer REFERENCES department (id),
+    employee_id   INTEGER REFERENCES employee (id),
+    department_id INTEGER REFERENCES department (id),
     PRIMARY KEY (employee_id, department_id)
 );
 
@@ -30,11 +30,11 @@ CREATE UNIQUE INDEX ON employee (email);
 
 BEGIN;
 
-CREATE OR REPLACE PROCEDURE update_department_size(department_number integer)
+CREATE OR REPLACE PROCEDURE update_department_size(department_number INTEGER)
 AS
 $$
 DECLARE
-    number_of_department_members integer := 0;
+    number_of_department_members INTEGER := 0;
 BEGIN
     SELECT count(*) INTO number_of_department_members FROM department_members WHERE department_id = department_number;
 
@@ -57,7 +57,7 @@ END;
 
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION update_all_department_sizes_trigger() RETURNS trigger
+CREATE OR REPLACE FUNCTION update_all_department_sizes_trigger() RETURNS TRIGGER
 AS
 $$
 BEGIN
@@ -74,12 +74,12 @@ EXECUTE FUNCTION update_all_department_sizes_trigger();
 COMMIT;
 BEGIN;
 
-CREATE OR REPLACE PROCEDURE update_colleagues(employee_number integer)
+CREATE OR REPLACE PROCEDURE update_colleagues(employee_number INTEGER)
 AS
 $$
 DECLARE
-    department_number integer := 0;
-    number            integer := 0;
+    department_number INTEGER := 0;
+    number            INTEGER := 0;
 BEGIN
     SELECT department_id FROM department_members WHERE employee_id = employee_number INTO department_number;
     SELECT number_of_employees FROM department WHERE id = department_number INTO number;
@@ -104,7 +104,7 @@ $$ LANGUAGE plpgsql;
 COMMIT;
 
 BEGIN;
-CREATE OR REPLACE FUNCTION update_all_employee_trigger() RETURNS trigger
+CREATE OR REPLACE FUNCTION update_all_employee_trigger() RETURNS TRIGGER
 AS
 $$
 BEGIN
@@ -150,12 +150,9 @@ SET
     department_id = 6
     WHERE employee_id = 10;
 
-SELECT *
-    FROM employee;
-SELECT *
-    FROM department;
-SELECT *
-    FROM department_members;
+SELECT * FROM employee;
+SELECT * FROM department;
+SELECT * FROM department_members;
 
 ROLLBACK;
 COMMIT;

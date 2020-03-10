@@ -168,6 +168,7 @@
     <option name="EXPR_CASE_THEN_ALIGN" value="true" />
   </OracleCodeStyleSettings>
   <PostgresCodeStyleSettings version="2">
+    <option name="USE_GENERIC_STYLE" value="true" />
     <option name="KEYWORD_CASE" value="0" />
     <option name="IDENTIFIER_CASE" value="1" />
     <option name="QUOTED_IDENTIFIER_CASE" value="0" />
@@ -220,8 +221,10 @@
     <option name="TYPE_CASE" value="0" />
     <option name="IDENTIFIER_CASE" value="1" />
     <option name="QUOTED_IDENTIFIER_CASE" value="1" />
-    <option name="QUERY_SECTION_1ST_WORD_ALIGN" value="8" />
+    <option name="QUERY_SECTION_1ST_WORD_ALIGN" value="2" />
+    <option name="QUERY_IN_ONE_STRING" value="3" />
     <option name="INSERT_INTO_NL" value="2" />
+    <option name="INSERT_OPENING" value="4" />
     <option name="INSERT_CONTENT" value="0" />
     <option name="INSERT_TABLE_EL_LINE" value="1" />
     <option name="INSERT_VALUES_EL_LINE" value="101" />
@@ -231,9 +234,10 @@
     <option name="SELECT_EL_WRAP" value="2" />
     <option name="SELECT_KEEP_N_ITEMS_IN_LINE" value="0" />
     <option name="FROM_EL_LINE" value="1" />
-    <option name="FROM_EL_WRAP" value="2" />
+    <option name="FROM_EL_WRAP" value="3" />
     <option name="FROM_ALIGN_JOIN_TABLES" value="true" />
     <option name="WHERE_EL_LINE" value="1" />
+    <option name="WHERE_EL_WRAP" value="2" />
     <option name="ORDER_EL_LINE" value="1" />
     <option name="ORDER_EL_WRAP" value="2" />
     <option name="IMP_DECLARE_ALIGN_DEFAULT" value="true" />
