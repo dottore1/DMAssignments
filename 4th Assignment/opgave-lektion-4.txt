@@ -1,0 +1,143 @@
+CREATE TABLE address(
+	id serial PRIMARY KEY,
+	streetname varchar(255) not null,
+	zip varchar(10) not null,
+	city varchar(100) not null
+);
+
+CREATE TABLE status(
+	id serial PRIMARY KEY,
+	type varchar(255)
+);
+
+CREATE TABLE person(
+	id serial PRIMARY KEY,
+	name varchar(255) not null,
+	email varchar(350) not null,
+	address_id integer references address(id),
+	status_id integer references status(id),
+	tlf integer unique
+);
+
+CREATE TABLE medarbejder(
+	id serial PRIMARY Key,
+	person_id integer references person(id) not null,
+	salary real not null
+);
+
+CREATE TABLE kunde(
+	id serial PRIMARY KEY,
+	person_id integer references person(id) not null
+);
+
+CREATE TABLE medlem(
+	id serial primary key,
+	person_id integer references person(id) not null
+);
+
+create table roller(
+	id serial primary key,
+	rollenavn varchar(255) unique not null
+);
+
+create table event(
+	id serial primary key,
+	navn varchar(255) not null,
+	tlf integer references person(tlf),
+	billede varchar(255) unique,
+	tidStart timestamp not null,
+	tidSlut timestamp not null
+);
+
+create table participants(
+	id serial primary key,
+	medlems_id integer references medlem(id),
+	event_id integer references event(id),
+	rolle_id integer references roller(id)
+);
+
+create table bådpladser(
+	id serial primary key,
+	person_id integer references person(id)
+);
+
+create table udlejningsbåde(
+	id serial primary key,
+	bådplads_id integer references bådpladser(id) unique not null
+);
+
+create table nyhedsbrev(
+	id serial primary key,
+	indhold text not null,
+	status_id integer references status(id)
+);
+
+insert into address (streetname, zip, city)
+values ('Finlandgade 7', '5000', 'Odense C');
+
+insert into roller (rollenavn)
+values ('Hjælper');
+
+insert into roller (rollenavn)
+values ('Opretter');
+
+insert into roller (rollenavn)
+values ('Deltager');
+
+insert into status(type)
+values ('Medarbejder');
+
+insert into status(type)
+values ('Medlem');
+
+insert into status(type)
+values ('Kunde');
+
+insert into person(name, email, address_id, status_id, tlf)
+values ('Teis', 'teaal17@student.sdu.dk', 1, 1, 20823497);
+
+insert into medarbejder(person_id, salary)
+values (1, 2000000000);
+
+insert into nyhedsbrev(indhold, status_id)
+values ('Kære medarbejdere...', 1);
+
+insert into bådpladser(person_id)
+values (null);
+
+insert into bådpladser(person_id)
+values (null);
+
+insert into bådpladser(person_id)
+values (null);
+
+insert into bådpladser(person_id)
+values (null);
+
+insert into udlejningsbåde(bådplads_id)
+values (1);
+
+insert into udlejningsbåde(bådplads_id)
+values (2);
+
+insert into udlejningsbåde(bådplads_id)
+values (3);
+
+insert into udlejningsbåde(bådplads_id)
+values (4);
+
+
+select * from address;
+
+select * from bådpladser;
+
+drop view medarbejder_adresser;
+
+create view medarbejder_adresser as
+select person.id, person.name, address.streetname, address.zip, address.city, status.type from medarbejder
+	inner join person on medarbejder.person_id = person.id
+	inner join address on person.address_id = address.id
+	inner join status on person.status_id = status.id;
+	
+
+select * from medarbejder_adresser;

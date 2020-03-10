@@ -1,159 +1,193 @@
-begin;
+BEGIN;
 
-create table employee
+CREATE TABLE employee
 (
-    id                   serial primary key,
-    username             varchar(255) not null unique,
-    password             varchar(255) not null,
-    email                varchar(255) not null unique,
+    id                   serial PRIMARY KEY,
+    username             varchar(255) NOT NULL UNIQUE,
+    password             varchar(255) NOT NULL,
+    email                varchar(255) NOT NULL UNIQUE,
     number_of_colleagues integer
 );
 
-create table department
+CREATE TABLE department
 (
-    id                  serial primary key,
-    name                varchar(50) not null unique,
+    id                  serial PRIMARY KEY,
+    name                varchar(50) NOT NULL UNIQUE,
     number_of_employees integer
 
 );
 
-create table department_members
+CREATE TABLE department_members
 (
-    employee_id   integer references employee (id),
-    department_id integer references department (id),
-    primary key (employee_id, department_id)
+    employee_id   integer REFERENCES employee (id),
+    department_id integer REFERENCES department (id),
+    PRIMARY KEY (employee_id, department_id)
 );
 
-commit;
+COMMIT;
 
-create unique index on employee (email);
+CREATE UNIQUE INDEX ON employee (email);
 
-begin;
+BEGIN;
 
-create or replace procedure update_department_size(department_number integer)
-as
+CREATE OR REPLACE PROCEDURE update_department_size(department_number integer)
+AS
 $$
-declare
+DECLARE
     number_of_department_members integer := 0;
-begin
-    select count(*) into number_of_department_members from department_members where department_id = department_number;
+BEGIN
+    SELECT count(*) INTO number_of_department_members FROM department_members WHERE department_id = department_number;
 
-    update department set number_of_employees = number_of_department_members where id = department_number;
-end;
+    UPDATE department SET number_of_employees = number_of_department_members WHERE id = department_number;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE update_all_department_sizes()
+AS
 $$
-    language plpgsql;
+DECLARE
+    department CURSOR FOR SELECT DISTINCT (id) AS id
+                              FROM department;
+BEGIN
+    FOR item IN department
+        LOOP
+            CALL update_department_size(item.id);
+        END LOOP;
+END;
 
-create or replace procedure update_all_department_sizes()
-as
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION update_all_department_sizes_trigger() RETURNS trigger
+AS
 $$
-declare
-    department cursor for select distinct (id) as id
-                          from department;
-begin
-    for item in department
-        loop
-            call update_department_size(item.id);
-        end loop;
-end;
+BEGIN
+    CALL update_all_department_sizes();
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
 
+CREATE TRIGGER update_all_department_sizes_trigger
+    AFTER INSERT OR DELETE OR UPDATE
+    ON department_members
+EXECUTE FUNCTION update_all_department_sizes_trigger();
+
+COMMIT;
+BEGIN;
+
+CREATE OR REPLACE PROCEDURE update_colleagues(employee_number integer)
+AS
 $$
-    language plpgsql;
-
-create or replace function update_all_department_sizes_trigger() returns trigger
-as
-$$
-begin
-    call update_all_department_sizes();
-    return null;
-end;
-$$
-    language plpgsql;
-
-create trigger update_all_department_sizes_trigger
-    after insert or delete or update
-    on department_members
-execute function update_all_department_sizes_trigger();
-
-commit;
-begin;
-
-create or replace procedure update_colleagues(employee_number integer)
-as
-$$
-declare
+DECLARE
     department_number integer := 0;
-    number integer := 0;
-begin
-    select department_id from department_members where employee_id = employee_number into department_number;
-    select number_of_employees from department where id = department_number into number;
-    update employee
-    set number_of_colleagues = number - 1
-    where id = employee_number;
-end;
+    number            integer := 0;
+BEGIN
+    SELECT department_id FROM department_members WHERE employee_id = employee_number INTO department_number;
+    SELECT number_of_employees FROM department WHERE id = department_number INTO number;
+    UPDATE employee SET number_of_colleagues = number - 1 WHERE id = employee_number;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE update_all_employee()
+AS
 $$
-    language plpgsql;
+DECLARE
+    employee CURSOR FOR SELECT DISTINCT(employee_id) AS id
+                            FROM department_members;
+BEGIN
+    FOR item IN employee
+        LOOP
+            CALL update_colleagues(item.id);
+        END LOOP;
+END;
+$$ LANGUAGE plpgsql;
 
-create or replace procedure update_all_employee()
-as
+COMMIT;
+
+BEGIN;
+CREATE OR REPLACE FUNCTION update_all_employee_trigger() RETURNS trigger
+AS
 $$
-declare
-    employee cursor for select distinct(employee_id) as id
-                        from department_members;
-begin
-    for item in employee loop
-        call update_colleagues(item.id);
-        end loop;
-end;
-$$
-    language plpgsql;
+BEGIN
+    CALL update_all_employee();
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
 
-commit;
+CREATE TRIGGER update_all_employee_trigger
+    AFTER INSERT OR DELETE OR UPDATE
+    ON department_members
+EXECUTE FUNCTION update_all_employee_trigger();
 
-begin;
-create or replace function update_all_employee_trigger()
-    returns trigger
-as
-$$
-begin
-    call update_all_employee();
-    return null;
-end;
-$$
-    language plpgsql;
+COMMIT;
 
-create trigger update_all_employee_trigger
-    after insert or delete or update
-    on department_members
-execute function update_all_employee_trigger();
+BEGIN;
 
-commit;
+INSERT
+    INTO employee(username, password, email)
+    VALUES
+        ('sikri', 'AnotherPassword', 'sikri@gmail.com');
+INSERT
+    INTO employee(username, password, email)
+    VALUES
+        ('teyson', 'AnotherPassword', 'teyson@gmail.com');
+INSERT
+    INTO employee(username, password, email)
+    VALUES
+        ('Nicky', 'AnotherPassword', 'Nicky@gmail.com');
+INSERT
+    INTO employee(username, password, email)
+    VALUES
+        ('Sapra', 'AnotherPassword', 'Sapra@gmail.com');
 
-begin;
+INSERT
+    INTO department(name)
+    VALUES
+        ('Sales');
+INSERT
+    INTO department(name)
+    VALUES
+        ('SoMo');
 
-insert into employee(username, password, email)
-values ('sikri', 'AnotherPassword', 'sikri@gmail.com');
-insert into employee(username, password, email)
-values ('teyson', 'AnotherPassword', 'teyson@gmail.com');
-insert into employee(username, password, email)
-values ('Nicky', 'AnotherPassword', 'Nicky@gmail.com');
-insert into employee(username, password, email)
-values ('Sapra', 'AnotherPassword', 'Sapra@gmail.com');
+INSERT
+    INTO department_members(employee_id, department_id)
+    VALUES
+        (9, 5);
+INSERT
+    INTO department_members(employee_id, department_id)
+    VALUES
+        (10, 5);
+INSERT
+    INTO department_members(employee_id, department_id)
+    VALUES
+        (11, 5);
+INSERT
+    INTO department_members(employee_id, department_id)
+    VALUES
+        (12, 5);
 
-insert into department(name)
-values ('Sales');
-insert into department(name)
-values ('SoMo');
+BEGIN;
+UPDATE department_members
+SET
+    department_id = 6
+    WHERE employee_id = 10;
 
-insert into department_members(employee_id,department_id) values (9, 5);
-insert into department_members(employee_id,department_id) values (10, 5);
-insert into department_members(employee_id,department_id) values (11, 6);
-insert into department_members(employee_id,department_id) values (12, 5);
+SELECT *
+    FROM employee;
+SELECT *
+    FROM department;
+SELECT *
+    FROM department_members;
 
-begin;
-update department_members set department_id = 6 where employee_id = 10;
+ROLLBACK;
+COMMIT;
 
-select * from employee;
-select * from department;
-select * from department_members;
-commit;
+BEGIN;
+
+INSERT
+    INTO employee(username, password, email)
+    VALUES
+        ('lol', 'AnotherPassword', 'lol@gmail.com'),
+        ('lolo', 'AnotherPassword', 'lolo@gmail.com'),
+        ('lollol', 'AnotherPassword', 'lollol@gmail.com'),
+        ('lolpop', 'AnotherPassword', 'lolpop@gmail.com');
 
